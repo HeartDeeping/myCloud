@@ -1,11 +1,10 @@
 package com.hd.order.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.hd.model.order.entity.OrderVO;
-import com.hd.order.config.nacos.OrderConfig;
+import com.hd.order.config.nacos.NacosOrderConfig;
 import com.hd.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +18,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
     @Autowired
-    private OrderConfig orderConfig;
+    private NacosOrderConfig nacosOrderConfig;
 //    @Value("${timeout.time}")
 //    private String time;
 
@@ -30,7 +29,7 @@ public class OrderController {
 
     @GetMapping(("/config"))
     public String config() {
-        return "timeout:"+orderConfig.getTimeout();
+        return "timeout:"+ nacosOrderConfig.getTimeout();
     }
 
 }

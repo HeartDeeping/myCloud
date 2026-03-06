@@ -1,11 +1,19 @@
 server:
   port: 6200
 spring:
+  profiles:
+    include: feign
   application:
     name: service-order
   cloud:
     nacos:
       server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+      eager: true
   config:
       import: nacos:service-order.yaml
-
+logging:
+  level:
+    com.hd.order.feign: debug

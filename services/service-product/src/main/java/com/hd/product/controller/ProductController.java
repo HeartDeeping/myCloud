@@ -2,6 +2,7 @@ package com.hd.product.controller;
 
 import com.hd.model.product.entity.ProductVO;
 import com.hd.product.service.impl.ProductService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,8 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/{id}")
-    public ProductVO queryProductById(@PathVariable("id") String id) {
+    public ProductVO queryProductById(@PathVariable("id") String id, HttpServletRequest request) {
+        System.out.println(request.getHeader("X-Token"));
         return productService.queryProductById(id);
     }
 }
